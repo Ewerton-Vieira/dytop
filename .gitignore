@@ -1,0 +1,12 @@
+.DS_Store
+__pycache__
+.ipynb_checkpoints/
+dytop.egg-info/
+*data/
+*logs/
+tmp*/
+examples/test.py
+output/
+models/
+.vscode/launch.json
+.vscode/
