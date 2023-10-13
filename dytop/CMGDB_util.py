@@ -3,16 +3,11 @@
 
 
 import matplotlib
-import matplotlib.pyplot as plt
 import numpy as np
-import math
 import csv
-import time
 import os
 import CMGDB
 from datetime import datetime
-import time
-import itertools
 
 
 def base10toN(num,n):

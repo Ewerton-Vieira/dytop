@@ -1,12 +1,13 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 
 setup (
     name = "dytop",
-    version = "0.1.1",
-    packages = find_packages(),
+    version = "0.1.7",
     author = "Ewerton Rocha Vieira",
     url = "https://github.com/Ewerton-Vieira/dytop.git",
     description = "dytop: combinatorial DYnamics and TOPology",
     long_description = open('README.md').read(),
-    install_requires = ['numpy', 'scipy', 'matplotlib', 'CMGDB'],
+    ext_package='dytop',
+    packages=['dytop'],
+    install_requires = ['numpy', 'scipy', 'matplotlib', 'CMGDB', 'pychomp2', 'matplotlib']
 )

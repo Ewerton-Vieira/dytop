@@ -10,3 +10,4 @@ output/
 models/
 .vscode/launch.json
 .vscode/
+dist/

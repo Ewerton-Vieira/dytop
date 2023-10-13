@@ -5,11 +5,7 @@ import pychomp2
 import CMGDB
 
 import numpy as np
-import time
-from datetime import datetime
-import math
 import csv
-import graphviz
 import os
 
 import matplotlib

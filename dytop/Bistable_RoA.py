@@ -1,7 +1,6 @@
 # Bistable_RoA.py  # 2022-20-01
 # MIT LICENSE 2020 Ewerton R. Vieira
 """Convert any system with two attractors into a bistable MG"""
-import csv
 import RoA
 import matplotlib.pyplot as plt
 
