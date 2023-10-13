@@ -243,7 +243,7 @@ class RoA:
 
         return d_vol
 
-    def PlotTiles(self, selection=[], fig_w=8, fig_h=8, xlim=None, ylim=None,
+    def PlotRoA(self, selection=[], fig_w=8, fig_h=8, xlim=None, ylim=None,
                   cmap=matplotlib.cm.get_cmap('viridis', 256), name_plot='', from_file=None, plot_point=False, section=None):
 
         if not os.path.exists(self.dir_path):
