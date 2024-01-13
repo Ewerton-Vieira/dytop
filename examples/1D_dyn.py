@@ -38,5 +38,7 @@ morse_graph, map_graph = CMGDB.ComputeMorseGraph(model)
 
 roa = RoA.RoA(map_graph, morse_graph)
 
+roa.save_file()
+
 fig, ax = roa.PlotRoA()
 plt.show()

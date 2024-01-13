@@ -199,11 +199,16 @@ class RoA:
         dim = int(len(rect) // 2)
         size_box = [rect[dim + i] - rect[i] for i in range(dim)]
 
+        # getting the bounds
+        lower_bounds = rect[0:dim]
+        rect = self.morse_graph.phase_space_box(self.map_graph.num_vertices()-1)
+        upper_bounds = rect[dim::]
+
         name = self.dir_path + name + "_RoA_" + ".csv"
         with open(name, "w") as file:
             f = csv.writer(file)
-            f.writerow(["Box size"])
-            f.writerow(size_box)
+            f.writerow(["Box size", "Lower bounds", "Upper bounds"])
+            f.writerow(size_box+lower_bounds+upper_bounds)
             f.writerow(["Tile", "Morse_node", "Box"])
 
             if self.dict_tiles:  # it might be empty
