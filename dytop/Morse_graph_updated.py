@@ -8,7 +8,7 @@ class Morse_graph_updated:
 
         self.MG_ = Poset.Poset(MG_updated)
 
-        self.MG_updated_ = pychomp2.DirectedAcyclicGraph()  # building Morse Graph Poset
+        self.MG_updated_ = pychomp.DirectedAcyclicGraph()  # building Morse Graph Poset
         self.MG_updated_.add_vertex(0)
 
         for u in self.morse_graph.vertices():

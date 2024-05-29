@@ -1,6 +1,6 @@
 # MultivaluedMap.py  # 2021-20-10
 # MIT LICENSE 2020 Ewerton R. Vieira
-import pychomp2
+import pychomp
 import graphviz
 import dytop.Poset as Poset
 
@@ -33,7 +33,7 @@ class MultivaluedMap:
         self.map_graph = map_graph
 
         # self.mapping: map_graph -> condensation_graph
-        condensation_graph, self.mapping = pychomp2.CondensationGraph(
+        condensation_graph, self.mapping = pychomp.CondensationGraph(
             self.vertices_, map_graph.adjacencies)
 
         self.CG = condensation_graph
@@ -46,7 +46,7 @@ class MultivaluedMap:
         # condensation_graph with poset structure
         self.condensation_graph = Poset.Poset(condensation_graph, save_memory=True)
 
-        MG = pychomp2.DirectedAcyclicGraph()  # building Morse Graph Poset
+        MG = pychomp.DirectedAcyclicGraph()  # building Morse Graph Poset
         MG.add_vertex(0)
         for u in range(morse_graph.num_vertices()):
             for v in morse_graph.adjacencies(u):
@@ -69,7 +69,7 @@ class MultivaluedMap:
         return set(U)
 
     def mvm_graph(self):
-        mvm = pychomp2.DirectedAcyclicGraph()  # building domain graph
+        mvm = pychomp.DirectedAcyclicGraph()  # building domain graph
         mvm.add_vertex(0)
         for v in self.vertices():
             for u in self.map_graph.adjacencies(v):

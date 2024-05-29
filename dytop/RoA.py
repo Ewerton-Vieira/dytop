@@ -1,7 +1,7 @@
 # RoA.py  # 2022-20-01
 # MIT LICENSE 2020 Ewerton R. Vieira
 
-import pychomp2
+import pychomp
 import CMGDB
 
 import numpy as np
@@ -55,7 +55,7 @@ class RoA:
          Inclui adaptive grid"""
 
         # It will create a updated Morse graph
-        self.MG_updated = pychomp2.DirectedAcyclicGraph()
+        self.MG_updated = pychomp.DirectedAcyclicGraph()
         for vertice in range(self.morse_graph.num_vertices()):
             self.MG_updated.add_vertex(vertice)
 
@@ -148,7 +148,7 @@ class RoA:
                 self.tiles_in_morse_sets[j] = i
 
         cyclic_Morse_graph = False
-        MG = pychomp2.DirectedAcyclicGraph()  # building Morse Graph Poset
+        MG = .DirectedAcyclicGraph()  # building Morse Graph Poset
         MG.add_vertex(0)
         for u in range(morse_graph.num_vertices()):
             for v in morse_graph.adjacencies(u):
