@@ -148,7 +148,7 @@ class RoA:
                 self.tiles_in_morse_sets[j] = i
 
         cyclic_Morse_graph = False
-        MG = .DirectedAcyclicGraph()  # building Morse Graph Poset
+        MG = pychomp.DirectedAcyclicGraph()  # building Morse Graph Poset
         MG.add_vertex(0)
         for u in range(morse_graph.num_vertices()):
             for v in morse_graph.adjacencies(u):
@@ -205,6 +205,8 @@ class RoA:
         upper_bounds = rect[dim::]
 
         name = self.dir_path + name + "_RoA_" + ".csv"
+        if not os.path.exists(name):
+            os.makedirs(name)
         with open(name, "w") as file:
             f = csv.writer(file)
             f.writerow(["Box size", "Lower bounds", "Upper bounds"])
