@@ -30,13 +30,13 @@ def update_file(order_retraction, file_input, name="bistable_RoA.csv"):
                 line = file.readline()
 
 
+if __name__ == "__main__":
+    order_retraction = {1:{3}, 0:{0,1,2,8,5,6}, 2:{4,7,9,10,11}}
+    name = "output/bistable_RoA_.csv"
 
-order_retraction = {1:{3}, 0:{0,1,2,8,5,6}, 2:{4,7,9,10,11}}
-name = "output/bistable_RoA_.csv"
+    assign = assignment(order_retraction)
 
-assign = assignment(order_retraction)
-
-update_file(order_retraction, "output/MG_RoA_.csv", name)
+    update_file(order_retraction, "output/MG_RoA_.csv", name)
 
 
 

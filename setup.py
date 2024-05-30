@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup (
     name = "dytop",
-    version = "0.1.9",
+    version = "0.1.10",
     author = "Ewerton Rocha Vieira",
     url = "https://github.com/Ewerton-Vieira/dytop.git",
     description = "dytop: combinatorial DYnamics and TOPology",
