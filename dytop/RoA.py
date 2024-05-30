@@ -204,9 +204,11 @@ class RoA:
         rect = self.morse_graph.phase_space_box(self.map_graph.num_vertices()-1)
         upper_bounds = rect[dim::]
 
+        if not os.path.exists(self.dir_path):
+            os.makedirs(self.dir_path)
+            
         name = self.dir_path + name + "_RoA_" + ".csv"
-        if not os.path.exists(name):
-            os.makedirs(name)
+
         with open(name, "w") as file:
             f = csv.writer(file)
             f.writerow(["Box size", "Lower bounds", "Upper bounds"])
