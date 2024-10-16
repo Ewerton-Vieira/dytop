@@ -31,11 +31,12 @@ def PlotRoA(lower_bounds, upper_bounds, selection=[], fig_w=8, fig_h=8, xlim=Non
     morse = {}  # tiles in morse sets
     tiles = {}  # tiles in regions of attraction (not including tiles in morse set)
 
+
     # read file saved by RoA
     if from_file and not from_file_basic:
 
         # read file
-        from_file = dir_path + from_file + "_RoA_" + ".csv"
+        from_file = os.path.join(dir_path, from_file + "_RoA_.csv")
         with open(from_file, "r") as file:
             f = csv.reader(file, delimiter=',')
             next(f)
@@ -95,12 +96,11 @@ def PlotRoA(lower_bounds, upper_bounds, selection=[], fig_w=8, fig_h=8, xlim=Non
             # d_vol[m_node] = d_vol.get(m_node, 0) + volume_cube
 
         print(f'dictionary with volume of all Morse tiles = {d_vol}')
-    # read file saved by RoA
+
 
     # read file saved by CMGDB (only Morse tiles)
     if from_file and from_file_basic:
-
-        from_file = dir_path + from_file + ".csv"
+        from_file = os.path.join(dir_path, from_file + ".csv")
         morse = {}
         with open(from_file, "r") as file:
             f = csv.reader(file, delimiter=',')
@@ -125,7 +125,7 @@ def PlotRoA(lower_bounds, upper_bounds, selection=[], fig_w=8, fig_h=8, xlim=Non
             morse[clr] = A
 
         tiles = morse
-    # read file saved by CMGDB (only Morse tiles)
+
 
     # for dim 1, add fake dimension
     if dim == 1:
@@ -228,7 +228,6 @@ def PlotRoA(lower_bounds, upper_bounds, selection=[], fig_w=8, fig_h=8, xlim=Non
             value_section = tuple([int(section[1][i]*100) for i in section[0]])
         name_plot = f'{dir_path}{name_plot}'
         name_plot += f'_{section[0]}_{value_section}' if section[0] else ''
-    # 2D plotting or 2D with a given section
 
     # 3D plotting
     else:
@@ -288,8 +287,8 @@ def PlotRoA(lower_bounds, upper_bounds, selection=[], fig_w=8, fig_h=8, xlim=Non
         ax.set_zlabel('Theta')
         name_plot = dir_path + name_plot
 
+
     # save file with name_plot
-    
     if name_plot != dir_path:
         plt.savefig(name_plot)
 
