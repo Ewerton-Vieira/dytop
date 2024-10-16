@@ -24,7 +24,12 @@ def PlotRoA(lower_bounds, upper_bounds, selection=[], fig_w=8, fig_h=8, xlim=Non
 
     # path to save and read files
     if not dir_path:
-        dir_path = os.path.abspath(os.getcwd()) + "/output/"
+        dir_path = os.path.join(os.getcwd(), "output")
+
+    variables = [a for a in range(dim)]
+
+    morse = {}  # tiles in morse sets
+    tiles = {}  # tiles in regions of attraction (not including tiles in morse set)
 
     # read file saved by RoA
     if from_file and not from_file_basic:
@@ -57,15 +62,11 @@ def PlotRoA(lower_bounds, upper_bounds, selection=[], fig_w=8, fig_h=8, xlim=Non
             num_morse_sets += 1
 
         # print(Tiles, Morse_nodes, Boxes)
-        variables = [a for a in range(dim)]
 
         if not selection:
             selection = [i for i in range(num_morse_sets)]
 
         cmap_norm = matplotlib.colors.Normalize(vmin=0, vmax=num_morse_sets-1)
-
-        morse = {}  # tiles in morse sets
-        tiles = {}  # tiles in regions of attraction (not including tiles in morse set)
 
         volume_cube = 1
         d_vol = dict()
@@ -111,13 +112,12 @@ def PlotRoA(lower_bounds, upper_bounds, selection=[], fig_w=8, fig_h=8, xlim=Non
                 box.append([float(row[i]) for i in range(2*dim)])
             box_size = [float(row[i+dim]) - float(row[i]) + eps_round_up for i in range(dim)]
 
-        variables = [a for a in range(dim)]
         num_morse_sets = Morse_nodes[-1] + 1
 
         cmap_norm = matplotlib.colors.Normalize(vmin=0, vmax=num_morse_sets-1)
 
-        morse = {}
-        tiles = {}
+        # morse = {}
+        # tiles = {}
         for i, m_node in enumerate(Morse_nodes):
             clr = matplotlib.colors.to_hex(cmap(cmap_norm(m_node)))
             A = morse.get(clr, [])
@@ -288,14 +288,9 @@ def PlotRoA(lower_bounds, upper_bounds, selection=[], fig_w=8, fig_h=8, xlim=Non
         ax.set_zlabel('Theta')
         name_plot = dir_path + name_plot
 
-    # 3D plotting
-
     # save file with name_plot
     
     if name_plot != dir_path:
-        print("here")
         plt.savefig(name_plot)
 
     return fig, ax
-
-    # return fig, ax, d_vol

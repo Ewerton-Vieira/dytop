@@ -22,16 +22,6 @@ def base10toN(num,n):
     return new_num_string
 
 
-
-
-
-# rect = [0,0,2,2]
-# subdivisions = 2
-#
-# print(len(FacePoints(rect, subdivisions)))
-# print(FacePoints(rect, subdivisions))
-
-
 class CMGDB_util:
 
     def __init__(self):
@@ -111,7 +101,7 @@ class CMGDB_util:
             all.append([face[j + int(ii[j])*dim] for j in range(dim)])
         return all
 
-    def run_CMGDB(self, subdiv_min, subdiv_max, lower_bounds, upper_bounds, phase_periodic, F, base_name, subdiv_init=6, subdiv_limit=10000, cmap=matplotlib.cm.get_cmap('viridis', 256)):
+    def run_CMGDB(self, subdiv_min, subdiv_max, lower_bounds, upper_bounds, phase_periodic, F, base_name, subdiv_init=6, subdiv_limit=10000, cmap=matplotlib.pyplot.get_cmap('viridis', 256)):
         # Define the parameters for CMGDB
 
         model = CMGDB.Model(subdiv_min, subdiv_max, subdiv_init, subdiv_limit,

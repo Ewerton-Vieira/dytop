@@ -2,7 +2,6 @@
 # MIT LICENSE 2020 Ewerton R. Vieira
 
 import pychomp
-import CMGDB
 
 import numpy as np
 import csv
@@ -128,7 +127,7 @@ class RoA:
         Input: adaptive = True: Adaptive grid and update Morse graph
         """
 
-        self.dir_path = os.path.abspath(os.getcwd()) + "/output/"
+        self.dir_path = os.path.join(os.getcwd(), "output")
 
         self.morse_graph = morse_graph
         self.map_graph = map_graph
@@ -207,7 +206,7 @@ class RoA:
         if not os.path.exists(self.dir_path):
             os.makedirs(self.dir_path)
             
-        name = self.dir_path + name + "_RoA_" + ".csv"
+        name = os.path.join(self.dir_path, name + "_RoA_.csv")
 
         with open(name, "w") as file:
             f = csv.writer(file)
@@ -274,6 +273,5 @@ class RoA:
         fig, ax = PlotRoA.PlotRoA(lower_bounds, upper_bounds, selection=selection, fig_w=fig_w, fig_h=fig_h, xlim=xlim,
                             ylim=ylim, cmap=cmap, name_plot=name_plot, from_file="temp", plot_point=plot_point, section=section)
 
-        os.remove(self.dir_path + "temp_RoA_.csv")
+        os.remove(os.path.join(self.dir_path, "temp_RoA_.csv"))
         return fig, ax
-
