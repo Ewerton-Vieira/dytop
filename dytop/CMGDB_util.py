@@ -428,6 +428,32 @@ class CMGDB_util:
         f_rect = Y_l_bounds + Y_u_bounds
         return f_rect
 
+    def F_data_enforce_bounds(self, rect, id2image, point2cell, K, lower_bounds, upper_bounds, phase_periodic):
+        dim = len(rect) // 2
+        id_of_rect = point2cell(CMGDB.CenterPoint(rect)[0]) # center to avoid boundary points
+        Y = id2image[id_of_rect]
+        if Y:
+            # Y is a list of arrays
+            # Get lower and upper bounds of Y
+            Amin = np.amin(Y, axis=0)
+            Amax = np.amax(Y, axis=0)
+            
+            Y_l_bounds = []
+            Y_u_bounds = []
+            for d in range(dim):
+                krect = K[d]*(rect[d + dim] - rect[d])
+                if phase_periodic[d]:
+                    Y_l_bounds.append(Amin[d] - krect)
+                    Y_u_bounds.append(Amax[d] + krect)
+                else:
+                    Y_l_bounds.append(max(Amin[d],lower_bounds[d]) - krect)
+                    Y_u_bounds.append(min(Amax[d],upper_bounds[d]) + krect)
+
+            f_rect = Y_l_bounds + Y_u_bounds
+            return f_rect
+        else:
+            return [30000]*2*dim
+        
     def F_data(self, rect, id2image, point2cell, K):
         dim = len(rect) // 2
         id_of_rect = point2cell(CMGDB.CenterPoint(rect)[0]) # center to avoid boundary points
