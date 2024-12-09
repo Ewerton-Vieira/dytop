@@ -428,7 +428,7 @@ class CMGDB_util:
         f_rect = Y_l_bounds + Y_u_bounds
         return f_rect
 
-    def F_data_enforce_bounds(self, rect, id2image, point2cell, K, lower_bounds, upper_bounds, phase_periodic):
+    def F_data_enforce_bounds(self, rect, id2image, point2cell, K, lower_bounds, upper_bounds, phase_periodic, verbose=False):
         dim = len(rect) // 2
         id_of_rect = point2cell(CMGDB.CenterPoint(rect)[0]) # center to avoid boundary points
         Y = id2image[id_of_rect]
@@ -452,6 +452,8 @@ class CMGDB_util:
             f_rect = Y_l_bounds + Y_u_bounds
             return f_rect
         else:
+            if verbose:
+                print(f"Cell {rect} has empty image")
             return [30000]*2*dim
         
     def F_data(self, rect, id2image, point2cell, K):
